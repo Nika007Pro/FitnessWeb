@@ -1,0 +1,31 @@
+{% extends 'main/base.html' %}
+{% block title %}
+Тренер
+{% endblock title %}
+{% block content %}
+
+<div class="team">
+  <div class="container2-info">
+    <hr>
+    <h1>Наша команда тренеров</h1>
+    <p>Наши тренера найдут ключ и подход к любому человеку, желающему познать мир фитнеса и здорового образа жизни.</p>
+  </div>
+    <div class="team-members">
+    {% for coach in coaches %}
+        <div class="team-member">
+            <div class="image-div">
+                <img src="{{ coach.image }}">
+                <div class="social-icon-box">
+    <a href="https://t.me/veronika_pr0"><i class="fa fa-telegram" aria-hidden="true"></i></a>
+    <a href="https://t.me/veronika_pr0"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+    <a href="https://t.me/veronika_pr0"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <h5>{{ coach.name }}</h5>
+            <h6>{{ coach.qualification }}</h6>
+        </div>
+    {% endfor %}
+</div>
+    </div>
+
+{% endblock content %}

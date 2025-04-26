@@ -1,0 +1,135 @@
+{% extends 'main/base.html' %}
+{% block content %}
+    <main id="main" style=" padding-top: 1px;">
+<section class="section1" >
+  <div class="section1-div">
+    <div class="firstSection">
+      <h1>Развей свою эпическую силу</h1>
+      <br>
+      <p>Открой для себя новый уровень фитнеса с EpicPower. Развивай свою эпическую силу, преобразись в лучшую версию себя, процветай вместе с нами и побеждай в каждом вызове!<br> EpicPower – твой путь к здоровью, силе и эпическим достижениям.</p>
+      <div class="btnDiv">
+        {% if not request.user.is_authenticated %}
+          <button class="btn1" onclick="redirectToRegister()">Зарегистрироваться</button>
+        {% endif %}
+        <button class="btn2" onclick="redirectToCourse()">Узнать больше</button>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<div class="container2" id="course">
+  <div class="container2-info">
+    <hr>
+    <h1>Программы тренеровок</h1>
+    <p>Подбери подходящие для себя тренировки!</p>
+  </div>
+  <div class="container2-items">
+    <div class="course-item">
+      <img src="/static/assets/css/img/courses-1.jpg">
+      <div>
+        <h3><b>Fitness</b></h3>
+        <p> В дружелюбной атмосфере нашего зала вы сможете комфортно тренироваться, поддерживаемые мотивирующей обстановкой и профессиональным оборудованием.</p>
+      </div>
+    </div>
+    <div class="course-item">
+      <img src="/static/assets/css/img/courses-2.jpg">
+      <div>
+        <h3 id="h3"><b>Body Building</b></h3>
+        <p>Этот вид тренировок включает в себя использование различных упражнений с отягощением, таких как поднятие тяжестей, а также специализированных программ тренировок.</p>
+      </div>
+    </div>
+    <div class="course-item">
+      <img src="/static/assets/css/img/courses-3.jpg">
+      <div>
+        <h3><b>Yoga & Meditation</b></h3>
+        <p>Практика йоги и медитации способствует улучшению гибкости, силы и баланса. Различные асаны (позы) помогают укрепить мышцы, улучшить осанку и повысить общую энергию.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="about" id="about">
+  <div class="aboutImg">
+
+  </div>
+  <div class="aboutInfo" >
+    <h1 class="experience"><i>Опыт длинною в 30 лет</i></h1>
+    <br>
+    <hr>
+    <h1 class="aboutHeading">Узнай больше о нас</h1>
+    <p>EpicPower - ваш путь к эпическому преображению! Наши современные тренировки, инновационное оборудование и индивидуальный подход помогут вам достичь максимальных результатов. Мы вдохновляем, поддерживаем и помогаем вам процветать, преодолевая фитнес-вызовы. Наши разнообразные программы, от интенсивных тренировок до увлекательных групповых занятий, подходят всем уровням подготовки. Присоединяйтесь к EpicPower - где энергия и мотивация создают истинный фитнес-опыт, вдохновляющий на постоянное развитие и победы.</p>
+    <button class="readmore" onclick="redirectToSchedule()" >Узнать больше</button>
+  </div>
+</div>
+
+<div class="container3">
+  <div class="metaInfo">
+    <div class="container3Item">
+      <i class="fa fa-users" aria-hidden="true"></i>
+      <h1 id="trainee">543</h1>
+      <h6>Клиентов</h6>
+    </div>
+    <div class="container3Item">
+      <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+      <h1 id="courses">20</h1>
+      <h6>Программ тренировок</h6>
+    </div>
+    <div class="container3Item">
+      <i class="fa fa-clock-o clock" aria-hidden="true"></i>
+      <h1 id="trainers">15</h1>
+      <h6>Тренеров</h6>
+    </div>
+    <div class="container3Item">
+      <i class="fa fa-trophy" aria-hidden="true"></i>
+      <h1 id="awards">5</h1>
+      <h6>Наград</h6>
+    </div>
+
+
+
+
+  </div>
+</div>
+</div>
+
+
+
+<footer>
+  <div class="footer-sections">
+    <div class="footer-sec-1">
+      <h5>Контакты</h5>
+      <h6>
+        Phone: 88005553333<br><br>
+        Email: epicpower@gamil.com<br><br>
+        Location: Москва
+      </h6>
+    </div>
+    <div class="footer-sec-1">
+      <h5>Course</h5>
+      <a href="#course" style="color: white;">Fitness</a><br>
+      <a href="#course" style="color: white;">Body Building</a><br>
+      <a href="#course" style="color: white;">Yoga & Meditation</a><br>
+      <a href="register" style="color: white;">Registration</a>
+
+    </div>
+    <div class="footer-sec-1">
+      <h5></h5>
+      <a href="#" style="color: white;">Home</a><br>
+      <a href="#course" style="color: white;">Тренировки</a><br>
+      <a href="#about" style="color: white;">О нас</a><br>
+        <a href="price" style="color: white;">Цены</a><br>
+      <a href="schedule" style="color: white;">Расписание</a>
+    </div>
+    <div class="footer-sec-1">
+      <h5>Подпишись на нас</h5>
+        <a href="https://t.me/veronika_pr0"><i class="fa fa-telegram" aria-hidden="true"></i></a>
+        <a href="https://t.me/veronika_pr0"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+    </div>
+  </div>
+  <hr>
+  <h6 class="copyright">2023/Developed by Veronika Protopopova</h6>
+</footer>
+    </main>
+{%  endblock %}
+

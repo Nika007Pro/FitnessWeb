@@ -1,0 +1,80 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Профиль{% endblock %}
+{% block hero %}
+<section id="hero" style=" padding-top: 160px;" class="d-flex align-items-center" >
+    <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
+        {% for message in messages %}
+            <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+                <strong></strong> {{message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card mb-4" style="max-width: 900px;">
+                    <div class="row">
+                        <div class="col-md-4">
+                            {% for prof in profile %}
+                                {% if prof.image %}
+                                    <img src="{{prof.image.url}}" class="card-img" alt="" style="height: 100%;">
+                                {% else %}
+                                    <img src="static/assets/img/human.jpg" class="card-img" alt=""
+                                         style="height: 100%;">
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title"><b>{{prof.name}}</b></h5>
+                                <p class="card-text"></p>
+                                {% for post in posts %}
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Логин : {{post.username}}</li>
+                                        <li class="list-group-item">Почта : {{post.email}}</li>
+                                    </ul>
+                                {% endfor %}
+                                {% for prof in profile %}
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Имя : {{prof.name}}</li>
+                                        <li class="list-group-item">Возраст : {{prof.age}}</li>
+                                        <li class="list-group-item">Номер телефона : {{prof.phone_number}}</li>
+                                    </ul>
+                                    <div class="card-body">
+                                        <a href="/update" class="card-link">Редактировать профиль</a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<div class="col-md-4">
+    <div class="card" style="width: 25rem;">
+        <div class="card-body">
+            <h5 class="card-title"><b>Данные о членстве</b></h5>
+            <p class="card-text"></p>
+
+            {% for prof in profile %}
+            {% if prof.selected_membership %}
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><span class="bold-text">Выбранное членство:</span> {{prof.selected_membership.name}}</li>
+                <li class="list-group-item"><span class="bold-text">Выбранный план:</span> {{prof.selected_plan.months}} месяцев</li>
+                <li class="list-group-item"><span class="bold-text">Количество посещений в неделю:</span> {{ prof.selected_membership.visit_amount }}</li>
+                <li class="list-group-item"><span class="bold-text">Доступ к приложению с онлайн-тренировками:</span> {{ prof.selected_membership.app_access }}</li>
+                <li class="list-group-item"><span class="bold-text">Особенности членства:</span> {{ prof.selected_membership.features }}</li>
+            </ul>
+            {% else %}
+            <p><a href="/price">Членство не оформлено. Перейти к ценам</a></p>
+            {% endif %}
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+        </div>
+    </div>
+</section>
+{% endblock hero %}

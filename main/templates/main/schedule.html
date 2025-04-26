@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+{% block title %}
+Расписание
+{% endblock title %}
+{% block content %}
+<div class="schedules" id="schedule">
+  <div class="schedule-div-overlay">
+    <div class="container2-info">
+      <hr>
+      <h1>Расписание групповых занятий</h1>
+      <p>Погрузись в мир фитнеса с нашими тренерами групповых тренировок, которые <br>заряжают энергией и хорошим настроением.</p>
+    </div>
+
+    <div class="class-routine">
+      {% for schedule in schedules %}
+        <div class="routine">
+          <h3>{{ forloop.counter }}.</h3>
+          <h4>{{ schedule.day_of_week }},<br> {{ schedule.start_time }} - {{ schedule.end_time }}</h4>
+          <h2>{{ schedule.training_name }}</h2>
+          <h4>{{ schedule.trainer_name }}</h4>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock content %}

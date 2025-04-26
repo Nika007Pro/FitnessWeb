@@ -1,0 +1,74 @@
+{% extends 'main/base.html' %}
+{% block title %}Статистика{% endblock %}
+{% block stat %}
+    <main id="main" style=" padding-top: 80px;">
+    <br><center><h1>Отчётные данные</h1></center><br><br>
+    <!-- Диаграмма 1 (членства) -->
+    <div style="position: relative; float: left; width: 45%;">
+        <div style="position: absolute; left: 29%; top: 1%; transform: translateY(-70%); white-space: nowrap;">
+            <p>Статистика по типам абонементов</p>
+        </div>
+        <canvas id="myPieChartMembership" width="300" height="300"></canvas>
+    </div>
+
+    <!-- Диаграмма 2 (длительность абонемента) -->
+    <div style="position: relative; float: right; width: 45%;">
+        <div style="position: absolute; left: 29%; top: 1%; transform: translateY(-70%); white-space: nowrap;">
+            <p>Статистика по длительности абонемента</p>
+        </div>
+        <canvas id="myPieChartPlan" width="300" height="300"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Диаграмма 1 (членства)
+            var ctxMembership = document.getElementById('myPieChartMembership').getContext('2d');
+            var chartLabelsMembership = {{ labels_membership|safe }};
+            var chartDataMembership = {{ data_membership|safe }};
+            var myPieChartMembership = new Chart(ctxMembership, {
+                type: 'pie',
+                data: {
+                    labels: chartLabelsMembership,
+                    datasets: [{
+                        data: chartDataMembership,
+                        backgroundColor: getRandomColorArray(chartDataMembership.length),
+                    }],
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                }
+            });
+
+            // Диаграмма 2 (длительность абонемента)
+            var ctxPlan = document.getElementById('myPieChartPlan').getContext('2d');
+            var chartLabelsPlan = {{ labels_plan|safe }};
+            var chartDataPlan = {{ data_plan|safe }};
+            var myPieChartPlan = new Chart(ctxPlan, {
+                type: 'pie',
+                data: {
+                    labels: chartLabelsPlan,
+                    datasets: [{
+                        data: chartDataPlan,
+                        backgroundColor: getRandomColorArray(chartDataPlan.length),
+                    }],
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                }
+            });
+        });
+
+        // Генерация случайных цветов
+        function getRandomColorArray(count) {
+            var colors = [];
+            for (var i = 0; i < count; i++) {
+                colors.push('#' + Math.floor(Math.random()*16777215).toString(16));
+            }
+            return colors;
+        }
+    </script>
+</main>
+{% endblock %}

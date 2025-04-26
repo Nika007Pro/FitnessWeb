@@ -1,0 +1,128 @@
+{% extends 'main/base.html' %}
+{% block title %} Абонемент {% endblock title%}
+{% block content %}
+    <main id="main" style=" padding-top: 60px;">
+<br><br><center> <h1>Оформление абонемента</h1> </center>
+        <style>
+        h1 {
+            color: #061af5;
+        }
+        .btn-primary {
+            background-color: #061af5;  /* Цвет для кнопки с классом btn-primary */
+            border-color: #061af5;  /* Цвет рамки кнопки */
+        }
+
+        .btn-primary:hover {
+            background-color: darkblue;  /* Цвет при наведении курсора на кнопку */
+            border-color: darkblue;
+        }
+    </style>
+<div class="container mt-2">
+  <div class="row">
+    <div class="col-md-3"></div>
+
+    <div class="col-md-6">
+      {% for message in messages %}
+      <div
+        class="alert alert-{{message.tags}} alert-dismissible fade show"
+        role="alert"
+      >
+        <strong></strong> {{message}}
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+      {% endfor %}
+
+      <form action="/card/" method="post" id="enrollment-form">{% csrf_token %}
+        {% csrf_token %}
+
+ <div class="form-group">
+            <select class="form-control mt-2" id="membership" name="membership" required>
+              <option selected>Выбрать абонемент</option>
+              {% for membership in memberships %}
+                <option value="{{membership.id}}" data-price="{{membership.price}}" data-visit-amount="{{membership.visit_amount}}" data-app-access="{{membership.app_access}}">{{membership.name}}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="form-group">
+            <select class="form-control mt-2" id="plan" name="plan" required>
+              <option selected>Выбрать план членства</option>
+              {% for plan in plans %}
+                <option value="{{plan.id}}" data-coefficient="{{plan.coefficient}}">{{plan.months}} месяцев</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control mt-2" value="" name="price" id="price" placeholder="Стоимость" readonly />
+          </div>
+          <div class="form-group">
+            <br />
+            <div class="d-grid gap-2">
+              <button class="btn btn-dark" type="submit">Оформить</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="col-md-3"></div>
+    </div>
+  </div>
+
+ <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var form = document.getElementById("enrollment-form");
+      form.addEventListener("change", function () {
+        updatePrice();
+      });
+
+      function updatePrice() {
+        var membershipSelect = document.getElementById("membership");
+        var planSelect = document.getElementById("plan");
+        var priceInput = document.getElementById("price");
+
+        var selectedMembership = membershipSelect.options[membershipSelect.selectedIndex];
+        var selectedPlan = planSelect.options[planSelect.selectedIndex];
+        var membershipPrice = selectedMembership.getAttribute("data-price");
+        var planCoefficient = selectedPlan.getAttribute("data-coefficient");
+
+        var totalPrice = calculateTotalPrice(membershipPrice, planCoefficient);
+        var formattedPrice = isNaN(totalPrice) ? "0" : totalPrice + " Рублей";
+
+        priceInput.value = formattedPrice;
+      }
+
+      function calculateTotalPrice(membershipPrice, planCoefficient) {
+        return parseFloat(membershipPrice) * parseInt(planCoefficient);
+      }
+    });
+  </script>
+
+</section>
+
+{% endblock %}
+
+{% block content2 %}
+  <!-- ======= About Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+    <div class="tariff-cards" data-aos="fade-up" data-aos-delay="50">
+      {% for membership in memberships %}
+        <div class="tariff-card" id="tariff-card-{{membership.id}}">
+          <h2>{{membership.name}}</h2>
+          <p><i class="bi bi-check-circle"></i> <span class="bold-text">Цена:</span> {{membership.price}} Рублей</p>
+          <p><i class="bi bi-check-circle"></i> <span class="bold-text">Продолжительность:</span> {{membership.duration_months}} месяцев</p>
+          <p><i class="bi bi-check-circle"></i> <span class="bold-text">Посещения в неделю:</span> {{membership.visit_amount}}</p>
+          <p><i class="bi bi-check-circle"></i> <span class="bold-text">Доступ к приложению:</span> {{membership.app_access}}</p>
+          <p><i class="bi bi-check-circle"></i> <span class="bold-text">Особенности:</span> {{membership.features}}</p>
+          <button class="btn btn-dark" onclick="openMiniWindow('{{membership.id}}')">Подробнее</button>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+    </main>
+{% endblock %}

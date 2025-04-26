@@ -1,0 +1,130 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script>
+    function redirectToRegister() {
+        window.location.href = "register";
+    }
+    function redirectToCourse() {
+        window.location.href = "#course";
+    }
+        function redirectToSchedule() {
+        window.location.href = "schedule";
+    }
+    function redirectToregister() {
+    window.location.href = "/card";
+}
+</script>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'assets/css/fitness.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <title>EpicPower</title>
+     <!-- Favicons -->
+  <link href="static/assets/img/flogo.png" rel="icon">
+</head>
+<body>
+<header id="header" class="d-flex align-items-center">
+    <nav class="header">
+        <div class="logo-div">
+          <a class="logo" href="/#"> EpicPower</a>
+        </div>
+
+        <div class="main-menu">
+{#<ul>#}
+{#          {% if request.user.is_authenticated %}#}
+{#          <li><a class="nav-link scrollto active" href="profile">Личный кабинет</a></li>#}
+{#          {% else %}#}
+{#          <li><a class="nav-link scrollto active" href="login">Личный кабинет</a></li>#}
+{#          {% endif %}#}
+{#          <li><a class="nav-link scrollto" href="coach">Тренеры</a></li>#}
+{#          <li><a class="nav-link scrollto" href="gym">Залы</a></li>#}
+{#          <li><a class="nav-link scrollto " href="card">Оформить абонемент</a></li>#}
+{#          {% if request.user.is_authenticated %}#}
+{#            {% if request.user.is_superuser %}#}
+{#                    <li><a class="nav-link scrollto " href="stat">Статистика</a></li>#}
+{#            {% endif %}#}
+{#            <li><a class="nav-link scrollto active" href="logout">Выйти</a></li>#}
+{#          {% endif %}#}
+{#<!--          <li><a class="nav-link scrollto" href="#pricing">Pricing</a></li>-->#}
+{#<!--          <li><a class="nav-link scrollto" href="#team">Team</a></li>-->#}
+{#<!--          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>-->#}
+{#        </ul>#}
+          <ul class="menu">
+            <li class="item">
+              <a class="link" href="/#">Home</a>
+            </li>
+            <li class="item">
+              <a class="link" href="/trainers">Тренеры</a>
+            </li>
+            <li class="item">
+                <a class="link" href="/#about">О нас</a>
+              </li>
+            <li class="item">
+                <a class="link" href="/schedule">Расписание</a>
+            </li>
+            <li class="item">
+              <a class="link" href="/price">Цены</a>
+            </li>
+              {% if request.user.is_authenticated %}
+          <li class="item">
+              <a class="link" href="/profile">Личный кабинет</a>
+            </li>
+          {% else %}
+<li class="item">
+              <a class="link" href="/login">Личный кабинет</a>
+            </li>
+          {% endif %}
+          {% if request.user.is_authenticated %}
+            {% if request.user.is_superuser %}
+                    <li class="item">
+              <a class="link1" href="/stat">Статистика</a></li>
+            {% endif %}
+            <li class="item">
+              <a class="link1" href="/logout">Выйти</a></li>
+          {% endif %}
+          </ul>
+        </div>
+        <div class="dropdown-btn">
+          <i id="hamburger" class="fa fa-bars" aria-hidden="true"></i>
+        </div>
+        <div class="responsive">
+          <i id="cross" class="fa fa-times"  aria-hidden="true"></i>
+          <ul class="responsive-menu">
+            <li class="item">
+              <a class="link1" href="#">Home</a>
+            </li>
+            <li class="item">
+              <a class="link1" href="index.html/#course">Course</a>
+            </li>
+            <li class="item">
+              <a class="link1" href="index.html/#about">About</a>
+            </li>
+            <li class="item">
+              <a class="link1" href="index.html/schedule">Schedule</a>
+            </li>
+            <li class="item">
+              <a class="link1" href="index.html/price">Price</a>
+            </li>
+
+          </ul>
+        </div>
+      </nav>
+</header>
+<main id="main">
+    {% block content %}{% endblock %}
+</main>
+
+
+    <footer>
+    </footer>
+{% block hero %}{% endblock %}
+{% block stat %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,64 @@
+{% extends 'main/base.html' %}
+{% block title %}
+Цена
+{% endblock title %}
+{% block content %}
+<div class="pricing-plan" id="price">
+  <div class="container2-info">
+    <hr>
+    <h1>Виды членства</h1>
+    <p>Выбери себе членство, которое подойдёт по длительности и по количеству доступных программ.</p>
+  </div>
+  <div class="plans">
+    <div class="plan1">
+      <h2>Basic</h2>
+      <br>
+      <h5><span>2000 руб</span>/Месяц</h5>
+      <hr>
+      <br>
+      <h6>+ до 3 дней в неделю</h6>
+      <br>
+      <h6>+ доступ к групповым тренировкам</h6>
+      <br>
+      <h6>+ доступ к общему залу</h6>
+      <br>
+      <h6>+ доступ к аппарату InBody</h6>
+      <br>
+      <button class="purchase-button" onclick="redirectToregister()">Оформить</button>
+    </div>
+    <div class="plan1">
+      <h2>Standard</h2>
+      <br>
+      <h5><span>2999 руб</span>/Месяц</h5>
+      <hr>
+      <br>
+      <h6>+ до 5 дней в неделю</h6>
+      <br>
+      <h6>+ доступ ко всем оборудованиям</h6>
+      <br>
+      <h6>+ доступ к приложению с онлайн-тренировками</h6>
+      <br>
+      <h6>+ доступ к аппарату InBody</h6>
+      <br>
+      <button class="purchase-button2" onclick="redirectToregister()">Оформить</button>
+    </div>
+
+    <div class="plan1">
+      <h2>Premium</h2>
+      <br>
+      <h5><span>3899 руб</span>/Месяц</h5>
+      <hr>
+      <br>
+      <h6>+ неограниченное количество посещений</h6>
+      <br>
+      <h6>+ возможность индивидуальных занятий</h6>
+      <br>
+      <h6>+ доступ к приложению с онлайн-тренировками</h6>
+      <br>
+      <h6>+ доступ к аппарату InBody</h6>
+      <br>
+      <button class="purchase-button3" onclick="redirectToregister()">Оформить</button>
+    </div>
+  </div>
+</div>
+{% endblock content %}
